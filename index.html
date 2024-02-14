@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" type="image" href="https://img.icons8.com/ios-glyphs/90/fast-cart.png" alt="fast-cart"/>">
+</head>
+<body>
+
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-primary-subtle">
+    <div class="container-fluid">
+    
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <form class="d-flex">
+        <input class="form-control me-2 " type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-success fw-medium" type="submit">Search</button>
+      </form>
+      <div class="con collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav  mb-4 mb-lg-0 fw-medium fs-5">
+          <li class="nav-item ms-3">
+            <a class="nav-link active text-primary " aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link text-primary " href="#">Login</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link text-primary" href="#"><i class="fa-solid fa-cart-shopping"></i>cart</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link text-primary" href="#"><i class="fa-solid fa-user"></i></a>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </div>
+  </nav>
+
+  <!-- <header class="bg-dark py-5" style="background-image: url('https://media.istockphoto.com/id/1177555914/photo/abstract-design-element-concept-of-annual-sale-shopping-season-mini-yellow-cart-with-paper.jpg?s=612x612&w=0&k=20&c=g9cxIk6uWSeCqOhyuWUfSiVxgm6PP155FvzNRvyAI7c='); background-size: cover; background-position: center;">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-dark">
+            <h1 class="display-4 fw-bolder">Easy Pick</h1>
+            <p class="lead fw-normal text-dark-50 mb-0">Explore online shopping</p>
+        </div>
+    </div>
+    <div class="srch">
+        <div class="container">
+        
+            <div class="row">
+        
+              <div class="col-md-2"></div>
+              <!-- <div class="col-md-8">
+                <div class="form">
+                    <i class="fa fa-search"></i>
+                    <input type="text" class="form-control form-input" placeholder="Search Your Product...">
+        
+                  </div>
+              </div> -->
+              <!-- <div class="col-md-2"></div>
+            </div>  
+          </div>
+    </div>
+</header> -->
+
+  <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+          
+  <hr class="w-75 mx-auto text-primary border border-1 border-primary bg-primary ">
+
+  <h4 class="content text-center ">Explore The Wide Range Of Exclusive Products</h4>
+            <div id="result" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                
+               
+            </div>
+        </div>
+    </section>
+
+
+
+
+  <!-- <div class="container" >
+    <div id="result" class="row row-cols-lg-3 row-cols-xl-3 mt-3 lh-1 ">
+        
+    </div>
+  </div> -->
+
+
+<!-- 
+    <h1 class="text-primary text-center" ></h1>
+<div  id="result" class="row justify-content-between" >
+    <div class="col-4"></div>
+    <div class="col-4"></div>
+    <div class="col-4"></div>
+</div> -->
+</body>
+   
+<script>
+
+
+fetch("https://dummyjson.com/carts")
+
+.then(data=>data.json()) 
+.then(data=>{console.log(data)
+  displayCarts(data)
+})
+function displayCarts(data){
+    
+    for(i of data.carts){ 
+        for(j of i.products){
+        output=`<div class="col mt-2 " >
+                <div class="card  shadow  border-0 rounded-2" style="width: 18rem;" >
+                    <img src="${j.thumbnail}" class="card-img-top img-fluid rounded-3 w-75 mx-auto mt-2 "  style="max-height:200px; max-width=200px; min-height:200px; object-fit:contain; " alt="...">
+                    <div class="card-body fw-medium text-center ">
+                      <h5 class="card-title text-primary " style="height:3rem">${j.title}</h5>
+                      <p class="card-text mn-3">Id -${j.id} </p>
+                      <p class="card-text">Price -Rs ${j.price}/- </p>
+                     <p class="card-text">Qty -${j.quantity} </p>
+                      <p class="card-text">Total-Price- Rs ${j.total}/-</p>
+                      <p class="card-text">Discount -${j.discountPercentage}% </p>
+                     <p class="card-text text-danger fs-5">Discount price - Rs ${j.discountedPrice}/- </p>
+                      <a href="#" class="btn btn-success fw-bold bg-success">Add to Cart</a>
+                    </div>
+                  </div>            
+            </div>`
+                  
+            result.innerHTML+=output;     
+    }
+    
+}
+
+}
+</script>
